@@ -1,0 +1,5 @@
+--- REALTORIO BIOINFO ---
+ID do gene: Insulina_Humana_Trecho
+Conteúdo GC: 67.78%
+Proteína: MALWMRLLPLLALLALWGPDPAAAFVNQHL
+-------------------------
