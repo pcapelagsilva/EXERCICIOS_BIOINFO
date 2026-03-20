@@ -196,7 +196,7 @@ print(40*"-")'''
 
 # ------------------------ RESOLUÇÃO ----------------------------
 
-from Bio.SeqUtils.ProtParam import ProteinAnalysis
+'''from Bio.SeqUtils.ProtParam import ProteinAnalysis
 from Bio.Seq import Seq
 
 seq_dna = input("Digite sua sequência de DNA suja: ").strip().upper().replace(" ", "")
@@ -212,7 +212,53 @@ print(f"Sua sequência DNA limpa é: {dna}")
 print(f"Transcrita para RNA fica: {rna}")
 print(f"Traduzia como proteína: {proteina}")
 print(f"E o seu peso molecular é: {analise.molecular_weight()}")
-print(40*"-=")
+print(40*"-=")'''
 
+# =================================================================
 
-# ===============================================================
+# EXERCÍCIO 9: VISUALIZAÇÃO DE DADOS BIOLÓGICOS (GRÁFICOS)
+# ENUNCIADO: 
+# Criar um gráfico de barras que mostre a frequência de cada base nitrogenada.
+# Isso ajuda a visualizar o perfil genético de uma sequência rapidamente.
+# DICA: Se o VS Code der erro de 'ModuleNotFoundError', 
+# rode no terminal: pip install matplotlib
+# =================================================================
+
+import matplotlib.pyplot as plt
+
+def gerar_grafico_bases(seq): # Conta as bases A, T, C, G e gera um gráfico de barras colorido.
+    bases = ["Adeninda (A)", "Timina (T)", "Citosina (C)", "Guanina (G)"]
+
+    contagem = [
+        seq.count('A'),
+        seq.count('T'),
+        seq.count('C'),
+        seq.count('G')
+    ]
+
+    # Configurando a aparência do gráfico
+    plt.figure(figsize=(10,6))
+
+    cores = ['royalblue', 'firebrick', 'forestgreen', 'darkorange']
+
+    plt.bar(bases, contagem, color=cores, edgecolor='black')
+
+    # Adicionando informações textuais
+    plt.title('DISTRIBUIÇÃO DE BASES NA SEQUÊNCIA', fontsize=20)
+    plt.xlabel('Bases Nitrogenadas', fontsize=15)
+    plt.ylabel('Frequência (Quantidade)', fontsize=15)
+
+    # Adiciona o valor exato em cima de cada barra
+    for i, valor in enumerate(contagem):
+        plt.text(i, valor + 0.1, str(valor), ha='center', fontweight='bold')
+
+    print("\n[INFO] Gráfico gerado com sucesso! Feche a janela para continuar...")
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.show()
+
+# --- ÁREA DE TESTE ---
+# Vamos usar o fragmento da Hemoglobina que você está estudando
+seq_dna = input("Digite sua sequência de DNA: ").strip().upper().replace(" ", "")
+
+print(f"Analisando a sequência {seq_dna}...")
+gerar_grafico_bases(seq_dna)
