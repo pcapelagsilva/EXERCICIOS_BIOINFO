@@ -1,0 +1,11 @@
+=== RELATÓRIO DE ANÁLISE GENÉTICA ===
+
+Amostra: >seq1
+Resultado GC: 50.00%
+------------------------------
+Amostra: >seq2
+Resultado GC: 58.33%
+------------------------------
+Amostra: >seq3
+Resultado GC: 25.00%
+------------------------------
