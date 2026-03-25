@@ -171,3 +171,70 @@ with open("sequencias_rev.fasta", "r") as entrada, open("relatorio_final_rev04.t
             saida.write("-"*30 + "\n")
 
 print("Arquivo 'relatorio_final_rev04.txt' gerado com sucesso")'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 6: O LIMPADOR DE DNA (REPLACE)
+# TAREFA: Crie uma função chamada 'limpar_dna' que recebe 
+# uma sequência cheia de traços (ex: "A-T-G-C") e retorna 
+# apenas as letras, sem os traços.
+# DICA: Use o comando .replace("-", "")
+# ---------------------------------------------------------
+
+'''def limpar_dna(seq):
+    seq_limpa = seq.strip().upper().replace("-", "").replace(" ", "")
+    return seq_limpa
+
+dna = input("Digite sua sequência suja: ").strip().upper().replace("-", "").replace(" ", "")
+print(limpar_dna(dna))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 7: COMPARADOR DE TAMANHO
+# TAREFA: Crie uma função chamada 'comparar_amostras' que 
+# recebe DUAS sequências. Se a primeira for maior que a 
+# segunda, retorne "Amostra 1 é maior". Caso contrário, 
+# retorne "Amostra 2 é maior ou igual".
+# ---------------------------------------------------------
+
+'''def comparar_tamamho(seq1, seq2):
+    if len(seq1) > len(seq2):
+        return "A primeira amostra é maior que a segunda"
+    else:
+        return "A segunda amostra é maior que a primeira"
+
+seq_a = input("Digite sua primeira sequência: ").strip().upper().replace(" ", "")
+seq_b = input("Digite sua segunda sequência: ").strip().upper().replace(" ", "")
+
+print(comparar_tamamho(seq_a, seq_b))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 8: CONTADOR DE MUTAÇÕES (PONTO ÚNICO)
+# TAREFA: Crie uma função chamada 'contar_g' que recebe 
+# uma sequência. Ela deve contar quantas vezes a base 'G' aparece e retornar esse número multiplicado por 10 
+# (simulando um cálculo de score de qualidade).
+# ---------------------------------------------------------
+
+'''def contar_g(sequencia):
+    g = sequencia.count("G")
+    total = g * 10
+    return total
+
+dna = input("Digite sua sequência: ").strip().upper().replace(" ", "")
+print(f"A sequência possui no total {dna.count("G")} G, e esse número vezes 10 fica igual a {contar_g(dna)}")'''
+
+
+# ---------------------------------------------------------
+# EXERCÍCIO 9: O FILTRO DO ARQUIVO (DESAFIO FINAL)
+# TAREFA: Abra o arquivo 'sequencias.fasta'. Para cada linha que for DNA (que não começa com ">"), use a sua função 
+# do EXERCÍCIO 6 para limpar a sequência e imprima o resultado.
+# ---------------------------------------------------------
+
+def limpar_dna(seq):
+    seq_limpa = seq.strip().upper().replace("-", "").replace(" ", "")
+    return seq_limpa
+
+with open("sequencias_rev.fasta", "r") as arquivo:
+    for linha in arquivo:
+        if linha.startswith(">"):
+            continue
+        else:
+            print(limpar_dna(linha))
