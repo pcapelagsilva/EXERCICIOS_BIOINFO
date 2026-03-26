@@ -350,3 +350,117 @@ with open("sequencias_rev.fasta", "r") as arquivo:
 
             print(resultado_mutacao)
             print(f"Ruído (N): {resultado_qualidade:.2f}%")'''
+
+# =================================================================
+# REVISÃO: LÓGICA DE PROGRAMAÇÃO PARA BIOINFORMÁTICA
+# =================================================================
+
+# ---------------------------------------------------------
+# EXERCÍCIO 14: FILTRO DE COMPRIMENTO (DNA DE INTERESSE)
+# TAREFA: Às vezes, o sequenciador gera fragmentos muito curtos 
+# que não servem. Crie uma função 'e_longo_o_suficiente' que 
+# recebe uma sequência e um tamanho mínimo (ex: 10). 
+# Se a sequência for maior ou igual ao mínimo, retorne True.
+# ---------------------------------------------------------
+
+'''def e_longo_o_suficiente(sequencia):
+    minimo = 10
+    if len(sequencia) >= minimo:
+        return True
+    elif len(sequencia) < minimo:
+        return "Sequência inválida"
+    else:
+        return False
+
+seq = input("Digite uma sequência de no mínimo 10 bases: ").strip().upper().replace(" ", "")
+print(e_longo_o_suficiente(seq))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 15: TRADUTOR DE PROTEÍNA (CÓDON DE PARADA)
+# TAREFA: Crie uma função 'tem_parada' que verifica se a 
+# sequência de DNA contém algum dos "Stop Codons": 
+# TAA, TAG ou TGA. 
+# Se encontrar qualquer um, retorne "⚠️ Proteína Incompleta".
+# ---------------------------------------------------------
+# Tabela de Códons (Dicionário de Tradução)
+'''tabela_codons = {
+    'ATA':'I', 'ATC':'I', 'ATT':'I', 'ATG':'M',
+    'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACT':'T',
+    'AAC':'N', 'AAT':'N', 'AAA':'K', 'AAG':'K',
+    'AGC':'S', 'AGT':'S', 'AGA':'R', 'AGG':'R',
+    'CTA':'L', 'CTC':'L', 'CTG':'L', 'CTT':'L',
+    'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCT':'P',
+    'CAC':'H', 'CAT':'H', 'CAA':'Q', 'CAG':'Q',
+    'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGT':'R',
+    'GTA':'V', 'GTC':'V', 'GTG':'V', 'GTT':'V',
+    'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCT':'A',
+    'GAC':'D', 'GAT':'D', 'GAA':'E', 'GAG':'E',
+    'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGT':'G',
+    'TCA':'S', 'TCC':'S', 'TCG':'S', 'TCT':'S',
+    'TTC':'F', 'TTT':'F', 'TTA':'L', 'TTG':'L',
+    'TAC':'Y', 'TAT':'Y', 'TAA':'stop', 'TAG':'stop', 'TGC':'C', 'TGT':'C', 'TGA':'stop', 'TGG':'W',
+}
+
+def tem_parada(dna):
+    if "TAA" in dna or "TAG" in dna or "TGA" in dna:
+        return "⚠️ Proteína Incompleta"
+    else:
+        return "✅ Sequência Completa (Sem Stop Codons)"
+
+print(tem_parada("ATGATAAGCT"))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 16: CONTADOR DE ADENINAS (RIQUEZA DE A)
+# TAREFA: Crie uma função 'contar_a' que retorna apenas a 
+# quantidade absoluta de letras "A" em uma sequência.
+# ---------------------------------------------------------
+
+'''def contar_a(dna):
+    return dna.upper().count("A")
+
+seq = input("Digite uma sequência: ").strip().upper().replace(" ", "")
+print(contar_a(seq))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 17: O SUPER PIPELINE (DESAFIO)
+# TAREFA: 
+# 1. Abra o seu arquivo 'sequencias.fasta'.
+# 2. Para cada sequência (pule cabeçalhos):
+#    - Se 'e_longo_o_suficiente' for True:
+#        - Conte as Adeninas (Ex 16).
+#        - Verifique se tem Stop Codon (Ex 15).
+#        - Imprima: "Sequência válida encontrada!" e os dados.
+#    - Caso contrário:
+#        - Imprima: "❌ Sequência muito curta para análise."
+# ---------------------------------------------------------
+'''def contar_a(dna):
+    return dna.upper().count("A")
+
+def tem_parada(dna):
+    if "TAA" in dna or "TAG" in dna or "TGA" in dna:
+        return "⚠️ Proteína Incompleta"
+    else:
+        return "✅ Sequência Completa (Sem Stop Codons)"
+    
+def e_longo_o_suficiente(sequencia):
+    minimo = 10
+    if len(sequencia) >= minimo:
+        return True
+    elif len(sequencia) < minimo:
+        return "Sequência inválida"
+    else:
+        return False
+    
+with open("sequencias_rev.fasta", "r") as arquivo:
+    for linha in arquivo:
+        if linha.startswith(">"):
+            continue
+        else:
+            if e_longo_o_suficiente(linha):
+                qtd_a = contar_a(linha)
+                aviso_stop = tem_parada(linha)
+                print(f"✅ Sequência válida encontrada!")
+                print(f"   - Adeninas: {qtd_a}")
+                print(f"   - Status: {aviso_stop}")
+            else:
+                print("❌ Sequência muito curta para análise.")'''
