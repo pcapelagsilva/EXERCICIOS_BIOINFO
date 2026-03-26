@@ -228,7 +228,7 @@ print(f"A sequência possui no total {dna.count("G")} G, e esse número vezes 10
 # do EXERCÍCIO 6 para limpar a sequência e imprima o resultado.
 # ---------------------------------------------------------
 
-def limpar_dna(seq):
+'''def limpar_dna(seq):
     seq_limpa = seq.strip().upper().replace("-", "").replace(" ", "")
     return seq_limpa
 
@@ -237,4 +237,116 @@ with open("sequencias_rev.fasta", "r") as arquivo:
         if linha.startswith(">"):
             continue
         else:
-            print(limpar_dna(linha))
+            print(limpar_dna(linha))'''
+
+# =================================================================
+# REVISÃO AVANÇADA: PROCESSAMENTO DE GENOMAS E ARQUIVOS
+# =================================================================
+
+# ---------------------------------------------------------
+# EXERCÍCIO 10: TRADUTOR DE FITAS (COMPLEMENTAR)
+# TAREFA: Crie uma função chamada 'gerar_complementar' que 
+# recebe uma sequência e substitui: A por T, T por A, 
+# C por G e G por C. 
+# DICA: Use .replace() ou um dicionário. Retorne a fita nova.
+# ---------------------------------------------------------
+
+'''def gerar_complementar(dna):
+    seq_pronta = ""
+    for base in dna:
+        if base == "A":
+            seq_pronta += "T"
+        elif base == "T":
+            seq_pronta += "A"
+        elif base == "C":
+            seq_pronta += "G"
+        elif base == "G":
+            seq_pronta += "C"
+        else:
+            seq_pronta == base
+
+    return seq_pronta
+
+seq = input("Digite sua sequência: ").strip().upper().replace(" ", "")
+
+print(gerar_complementar(seq))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 11: LOCALIZADOR DE MUTAÇÃO (SNP)
+# TAREFA: Crie uma função chamada 'buscar_mutacao' que recebe uma sequência. Se ela encontrar o padrão "GTG" 
+# (mutação da anemia falciforme), retorne: "⚠️ Mutação Detectada".
+# Caso contrário, retorne: "✅ Sequência Normal".
+# ---------------------------------------------------------
+
+'''def buscar_mutacao(seq):
+    posicao = seq.find("GTG")
+    
+    if posicao != -1:
+        return f"⚠️ Mutação Detectada na posição: {posicao + 1}"
+    else:
+        return "✅ Sequência Normal"
+
+# Teste
+dna = input("Digite a sequência: ").strip().upper()
+print(buscar_mutacao(dna))'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 12: CONTADOR DE QUALIDADE (BASES N)
+# TAREFA: Em sequenciamentos ruins, aparecem muitos "N". 
+# Crie uma função 'checar_qualidade' que retorna a 
+# PORCENTAGEM de letras "N" em uma sequência.
+# ---------------------------------------------------------
+
+'''def checar_qualidade(sequencia):
+    n = sequencia.count("N")
+    tamanho = len(sequencia)
+
+    if tamanho > 0:
+        porcentagem_n = (n/tamanho)*100
+        return porcentagem_n
+    else:
+        return 0
+    
+dna = input("Digite sua sequência: ").strip().upper().replace(" ", "")
+print(f"Qualidade: {checar_qualidade(dna)}% de N")'''
+
+# ---------------------------------------------------------
+# EXERCÍCIO 13: O DESAFIO DO ARQUIVO REAL (INTEGRAÇÃO)
+# TAREFA: 
+# 1. Abra o arquivo 'sequencias.fasta'.
+# 2. Para cada sequência (pule os cabeçalhos >):
+#    - Use a função do EX 11 para ver se tem mutação.
+#    - Use a função do EX 12 para ver se a qualidade é boa.
+#    - Imprima um laudo para cada uma.
+# ---------------------------------------------------------
+
+'''def buscar_mutacao(seq):
+                posicao = seq.find("GTG")
+    
+                if posicao != -1:
+                    return f"⚠️ Mutação Detectada na posição: {posicao + 1}"
+                else:
+                    return "✅ Sequência Normal"
+                
+def checar_qualidade(sequencia):
+                n = sequencia.count("N")
+                tamanho = len(sequencia)
+
+                if tamanho > 0:
+                    porcentagem_n = (n/tamanho)*100
+                    return porcentagem_n
+                else:
+                    return 0
+
+with open("sequencias_rev.fasta", "r") as arquivo:
+    for linha in arquivo:
+        linha_limpa = linha.strip().upper()
+
+        if linha_limpa.startswith(">"):
+               print(f"\nAnalisando: {linha_limpa}")
+        else:
+            resultado_mutacao = buscar_mutacao(linha_limpa)
+            resultado_qualidade = checar_qualidade(linha_limpa)
+
+            print(resultado_mutacao)
+            print(f"Ruído (N): {resultado_qualidade:.2f}%")'''
